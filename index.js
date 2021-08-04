@@ -3,18 +3,18 @@ import csv from "csvtojson";
 import fs from "fs";
 
 const filename = "slsprofile_updated@1.csv";
-const outputFileName = filename.split(".")[0] + "_output.csv";
+const outputFileName = "OutputFiles/" + filename.split(".")[0] + "_output.csv";
 var sls = null;
 
 if (filename.split(".").pop() == "csv") {
   await csv()
-    .fromFile(filename)
+    .fromFile("InputFiles/"+filename)
     .then((jsonArrayObj) => {
       sls = jsonArrayObj;
       const OutdoorUsers1 = OutdoorUsers_();
     });
 } else {
-  let raw = fs.readFileSync(filename);
+  let raw = fs.readFileSync("InputFiles/"+filename);
   sls = JSON.parse(raw);
 }
 
